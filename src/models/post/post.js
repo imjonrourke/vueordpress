@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 /**
  * @class Post
  * Class for Post. Constructor is directly replicated from WordPress documentation.
@@ -128,168 +130,177 @@ export class Post {
     this.comment_count = comment_count;
     this.filter = filter;
   }
-  /**
-   * @return {number}
-   */
-  getId() {
-    return this.id;
-  }
-  /**
-   * @return {string}
-   */
-  getAuthor() {
-    return this.author;
-  }
-  /**
-   * @return {string}
-   */
-  getDate() {
-    return this.date;
-  }
-  /**
-   * @return {string}
-   */
-  getDate_gmt() {
-    return this.date_gmt;
-  }
+  // /**
+  //  * @return {number}
+  //  */
+  // getId() {
+  //   return this.id;
+  // }
+  // /**
+  //  * @return {string}
+  //  */
+  // getAuthor() {
+  //   return this.author;
+  // }
+  // /**
+  //  * @return {string}
+  //  */
+  // getDate() {
+  //   return this.date;
+  // }
+  // /**
+  //  * @return {string}
+  //  */
+  // getDate_gmt() {
+  //   return this.date_gmt;
+  // }
+  //
+  // /**
+  //  * @returns {string}
+  //  */
+  // getContent() {
+  //   return this.content;
+  // }
+  //
+  // /**
+  //  * @returns {string}
+  //  */
+  // getTitle() {
+  //   return this.title;
+  // }
+  //
+  // /**
+  //  * @returns {string}
+  //  */
+  // getExcerpt() {
+  //   return this.excerpt;
+  // }
+  //
+  // /**
+  //  * @returns {string}
+  //  */
+  // getStatus() {
+  //   return this.status;
+  // }
+  //
+  // /**
+  //  * @returns {string}
+  //  */
+  // getCommentStatus() {
+  //   return this.comment_status;
+  // }
+  //
+  // /**
+  //  * @returns {string}
+  //  */
+  // getPingStatus() {
+  //   return this.ping_status;
+  // }
+  //
+  // /**
+  //  * @returns {string}
+  //  */
+  // getPassword() {
+  //   return this.password;
+  // }
+  //
+  // /**
+  //  * @returns {string}
+  //  */
+  // getName() {
+  //   return this.name;
+  // }
+  //
+  // /**
+  //  * @returns {string}
+  //  */
+  // getToPing() {
+  //   return this.to_ping;
+  // }
+  //
+  // /**
+  //  * @returns {string}
+  //  */
+  // getPinged() {
+  //   return this.pinged;
+  // }
+  //
+  // /**
+  //  * @returns {string}
+  //  */
+  // getModified() {
+  //   return this.modified;
+  // }
+  //
+  // /**
+  //  * @returns {string}
+  //  */
+  // getModifiedGmt() {
+  //   return this.modified_gmt;
+  // }
+  //
+  // /**
+  //  * @returns {string}
+  //  */
+  // getContentFiltered() {
+  //   return this.content_filtered;
+  // }
+  //
+  // /**
+  //  * @returns {number}
+  //  */
+  // getParent() {
+  //   return this.parent;
+  // }
+  //
+  // /**
+  //  * @returns {string}
+  //  */
+  // getGuid() {
+  //   return this.guid;
+  // }
+  //
+  // /**
+  //  * @returns {number}
+  //  */
+  // getMenuOrder() {
+  //   return this.menu_order;
+  // }
+  //
+  // /**
+  //  * @returns {string}
+  //  */
+  // getType() {
+  //   return this.type;
+  // }
+  //
+  // /**
+  //  * @returns {string}
+  //  */
+  // getMimeType() {
+  //   return this.mime_type;
+  // }
+  //
+  // /**
+  //  * @returns {string}
+  //  */
+  // getCommentCount() {
+  //   return this.comment_count;
+  // }
+  //
+  // /**
+  //  * @returns {string}
+  //  */
+  // getFilter() {
+  //   return this.filter;
+  // }
+}
 
-  /**
-   * @returns {string}
-   */
-  getContent() {
-    return this.content;
-  }
-
-  /**
-   * @returns {string}
-   */
-  getTitle() {
-    return this.title;
-  }
-
-  /**
-   * @returns {string}
-   */
-  getExcerpt() {
-    return this.excerpt;
-  }
-
-  /**
-   * @returns {string}
-   */
-  getStatus() {
-    return this.status;
-  }
-
-  /**
-   * @returns {string}
-   */
-  getCommentStatus() {
-    return this.comment_status;
-  }
-
-  /**
-   * @returns {string}
-   */
-  getPingStatus() {
-    return this.ping_status;
-  }
-
-  /**
-   * @returns {string}
-   */
-  getPassword() {
-    return this.password;
-  }
-
-  /**
-   * @returns {string}
-   */
-  getName() {
-    return this.name;
-  }
-
-  /**
-   * @returns {string}
-   */
-  getToPing() {
-    return this.to_ping;
-  }
-
-  /**
-   * @returns {string}
-   */
-  getPinged() {
-    return this.pinged;
-  }
-
-  /**
-   * @returns {string}
-   */
-  getModified() {
-    return this.modified;
-  }
-
-  /**
-   * @returns {string}
-   */
-  getModifiedGmt() {
-    return this.modified_gmt;
-  }
-
-  /**
-   * @returns {string}
-   */
-  getContentFiltered() {
-    return this.content_filtered;
-  }
-
-  /**
-   * @returns {number}
-   */
-  getParent() {
-    return this.parent;
-  }
-
-  /**
-   * @returns {string}
-   */
-  getGuid() {
-    return this.guid;
-  }
-
-  /**
-   * @returns {number}
-   */
-  getMenuOrder() {
-    return this.menu_order;
-  }
-
-  /**
-   * @returns {string}
-   */
-  getType() {
-    return this.type;
-  }
-
-  /**
-   * @returns {string}
-   */
-  getMimeType() {
-    return this.mime_type;
-  }
-
-  /**
-   * @returns {string}
-   */
-  getCommentCount() {
-    return this.comment_count;
-  }
-
-  /**
-   * @returns {string}
-   */
-  getFilter() {
-    return this.filter;
-  }
+export function getPost(args = {}) {
+  const { type = 'post' } = args.type;
+  return axios.get(`/wp/v2/${type}s/${args.id}`)
+    .then(response => {
+      return new Post(response.data);
+    })
+    .catch(error => error.data);
 }

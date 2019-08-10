@@ -1,4 +1,5 @@
 import Post from '../post/post';
+import getPost from '../post/post';
 
 /**
  * @class Page
@@ -10,4 +11,9 @@ export class Page extends Post {
     super();
     this.type = type;
   }
+}
+
+export function getPage(args = {}) {
+  const type = 'page';
+  return getPost({ ...args, type });
 }

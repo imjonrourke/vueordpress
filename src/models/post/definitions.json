@@ -1,6 +1,6 @@
 {
   "list": {
-    "definition": "GET /wp/v2/posts",
+    "definition": "/wp/v2/posts",
     "arguments": {
       "context": "Scope under which the request is made; determines fields present in response. Default: view One of: view, embed, edit",
       "page": "Current page of the collection. Default: 1",
@@ -25,7 +25,7 @@
     }
   },
   "create": {
-    "definition": "POST /wp/v2/posts",
+    "definition": "/wp/v2/posts",
     "arguments": {
       "date": "The date the object was published, in the site's timezone.",
       "date_gmt": "The date the object was published, as GMT.",
@@ -48,7 +48,7 @@
     }
   },
   "retrieve": {
-    "definition": "GET /wp/v2/posts/<id>",
+    "definition": "/wp/v2/posts/<id>",
     "arguments": {
       "id": "Unique identifier for the object.",
       "context": "Scope under which the request is made; determines fields present in response. Default: view One of: view, embed, edit",
@@ -56,7 +56,7 @@
     }
   },
   "update": {
-    "definition": "POST /wp/v2/posts/<id>",
+    "definition": "/wp/v2/posts/<id>",
     "arguments": {
       "id": "Unique identifier for the object.",
       "date": "The date the object was published, in the site's timezone.",
@@ -80,7 +80,7 @@
     }
   },
   "delete": {
-    "definition": "DELETE /wp/v2/posts/<id>",
+    "definition": "/wp/v2/posts/<id>",
     "arguments": {
       "id": "Unique identifier for the object.",
       "force": "Whether to bypass trash and force deletion."
