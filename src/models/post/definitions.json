@@ -1,0 +1,195 @@
+{
+  "list": {
+    "definition": "GET /wp/v2/posts",
+    "arguments": {
+      "context": "Scope under which the request is made; determines fields present in response. Default: view One of: view, embed, edit",
+      "page": "Current page of the collection. Default: 1",
+      "per_page": "Maximum number of items to be returned in result set. Default: 10",
+      "search": "Limit results to those matching a string.",
+      "after": "Limit response to posts published after a given ISO8601 compliant date.",
+      "author": "Limit result set to posts assigned to specific authors.",
+      "author_exclude": "Ensure result set excludes posts assigned to specific authors.",
+      "before": "Limit response to posts published before a given ISO8601 compliant date.",
+      "exclude": "Ensure result set excludes specific IDs.",
+      "include": "Limit result set to specific IDs.",
+      "offset": "Offset the result set by a specific number of items.",
+      "order": "Order sort attribute ascending or descending. Default: desc One of: asc, desc",
+      "orderby": "Sort collection by object attribute. Default: date One of: author, date, id, include, modified, parent, relevance, slug, include_slugs, title",
+      "slug": "Limit result set to posts with one or more specific slugs.",
+      "status": "Limit result set to posts assigned one or more statuses. Default: publish",
+      "categories": "Limit result set to all items that have the specified term assigned in the categories taxonomy.",
+      "categories_exclude": "Limit result set to all items except those that have the specified term assigned in the categories taxonomy.",
+      "tags": "Limit result set to all items that have the specified term assigned in the tags taxonomy.",
+      "tags_exclude": "Limit result set to all items except those that have the specified term assigned in the tags taxonomy.",
+      "sticky": "Limit result set to items that are sticky."
+    }
+  },
+  "create": {
+    "definition": "POST /wp/v2/posts",
+    "arguments": {
+      "date": "The date the object was published, in the site's timezone.",
+      "date_gmt": "The date the object was published, as GMT.",
+      "slug": "An alphanumeric identifier for the object unique to its type.",
+      "status": "A named status for the object. One of: publish, future, draft, pending, private",
+      "password": "A password to protect access to the content and excerpt.",
+      "title": "The title for the object.",
+      "content": "The content for the object.",
+      "author": "The ID for the author of the object.",
+      "excerpt": "The excerpt for the object.",
+      "featured_media": "The ID of the featured media for the object.",
+      "comment_status": "Whether or not comments are open on the object. One of: open, closed",
+      "ping_status": "Whether or not the object can be pinged. One of: open, closed",
+      "format": "The format for the object. One of: standard, aside, chat, gallery, link, image, quote, status, video, audio",
+      "meta": "Meta fields.",
+      "sticky": "Whether or not the object should be treated as sticky.",
+      "template": "The theme file to use to display the object.",
+      "categories": "The terms assigned to the object in the category taxonomy.",
+      "tags": "The terms assigned to the object in the post_tag taxonomy."
+    }
+  },
+  "retrieve": {
+    "definition": "GET /wp/v2/posts/<id>",
+    "arguments": {
+      "id": "Unique identifier for the object.",
+      "context": "Scope under which the request is made; determines fields present in response. Default: view One of: view, embed, edit",
+      "password": "The password for the post if it is password protected."
+    }
+  },
+  "update": {
+    "definition": "POST /wp/v2/posts/<id>",
+    "arguments": {
+      "id": "Unique identifier for the object.",
+      "date": "The date the object was published, in the site's timezone.",
+      "date_gmt": "The date the object was published, as GMT.",
+      "slug": "An alphanumeric identifier for the object unique to its type.",
+      "status": "A named status for the object. One of: publish, future, draft, pending, private",
+      "password": "A password to protect access to the content and excerpt.",
+      "title": "The title for the object.",
+      "content": "The content for the object.",
+      "author": "The ID for the author of the object.",
+      "excerpt": "The excerpt for the object.",
+      "featured_media": "The ID of the featured media for the object.",
+      "comment_status": "Whether or not comments are open on the object. One of: open, closed",
+      "ping_status": "Whether or not the object can be pinged. One of: open, closed",
+      "format": "The format for the object. One of: standard, aside, chat, gallery, link, image, quote, status, video, audio",
+      "meta": "Meta fields.",
+      "sticky": "Whether or not the object should be treated as sticky.",
+      "template": "The theme file to use to display the object.",
+      "categories": "The terms assigned to the object in the category taxonomy.",
+      "tags": "The terms assigned to the object in the post_tag taxonomy."
+    }
+  },
+  "delete": {
+    "definition": "DELETE /wp/v2/posts/<id>",
+    "arguments": {
+      "id": "Unique identifier for the object.",
+      "force": "Whether to bypass trash and force deletion."
+    }
+  },
+  "schema": {
+    "date": {
+      "type": "string, datetime ([details](https://core.trac.wordpress.org/ticket/41032))",
+      "content": "The date the object was published, in the site's timezone. Context: view, edit, embed"
+    },
+    "date_gmt": {
+      "type": "string, datetime ([details](https://core.trac.wordpress.org/ticket/41032))",
+      "content": "The date the object was published, as GMT. Context: view, edit"
+    },
+    "guid": {
+      "type": "object",
+      "content": "The globally unique identifier for the object. Read only Context: view, edit"
+    },
+    "id": {
+      "type": "integer",
+      "content": "Unique identifier for the object. Read only Context: view, edit, embed"
+    },
+    "link": {
+      "type": "string, uri",
+      "content": "URL to the object. Read only Context: view, edit, embed"
+    },
+    "modified": {
+      "type": "string, datetime ([details](https://core.trac.wordpress.org/ticket/41032))",
+      "content": "The date the object was last modified, in the site's timezone. Read only Context: view, edit"
+    },
+    "modified_gmt": {
+      "type": "string, datetime ([details](https://core.trac.wordpress.org/ticket/41032))",
+      "content": "The date the object was last modified, as GMT. Read only Context: view, edit"
+    },
+    "slug": {
+      "type": "string",
+      "content": "An alphanumeric identifier for the object unique to its type. Context: view, edit, embed"
+    },
+    "status": {
+      "type": "string",
+      "content": "A named status for the object. Context: view, edit One of: publish, future, draft, pending, private"
+    },
+    "type": {
+      "type": "string",
+      "content": "Type of Post for the object. Read only Context: view, edit, embed"
+    },
+    "password": {
+      "type": "string",
+      "content": "A password to protect access to the content and excerpt. Context: edit"
+    },
+    "permalink_template": {
+      "type": "string",
+      "content": "Permalink template for the object. Read only Context: edit"
+    },
+    "generated_slug": {
+      "type": "string",
+      "content": "Slug automatically generated from the object title. Read only Context: edit"
+    },
+    "title": {
+      "type": "object",
+      "content": "The title for the object. Context: view, edit, embed"
+    },
+    "content": {
+      "type": "object",
+      "content": "The content for the object. Context: view, edit"
+    },
+    "author": {
+      "type": "integer",
+      "content": "The ID for the author of the object. Context: view, edit, embed"
+    },
+    "excerpt": {
+      "type": "object",
+      "content": "The excerpt for the object. Context: view, edit, embed"
+    },
+    "featured_media": {
+      "type": "integer",
+      "content": "The ID of the featured media for the object. Context: view, edit, embed"
+    },
+    "comment_status": {
+      "type": "string",
+      "content": "Whether or not comments are open on the object. Context: view, edit One of: open, closed"
+    },
+    "ping_status": {
+      "type": "string",
+      "content": "Whether or not the object can be pinged. Context: view, edit One of: open, closed"
+    },
+    "format": {
+      "type": "string",
+      "content": "The format for the object. Context: view, edit One of: standard, aside, chat, gallery, link, image, quote, status, video, audio"
+    },
+    "meta": {
+      "type": "object",
+      "content": "Meta fields. Context: view, edit"
+    },
+    "sticky": {
+      "type": "boolean",
+      "content": "Whether or not the object should be treated as sticky. Context: view, edit"
+    },
+    "template": {
+      "type": "string",
+      "content": "The theme file to use to display the object. Context: view, edit"
+    },
+    "categories": {
+      "type": "array",
+      "content": "The terms assigned to the object in the category taxonomy. Context: view, edit"
+    },
+    "tags": {
+      "type": "array",
+      "content": "The terms assigned to the object in the post_tag taxonomy. Context: view, edit"
+    }
+  }
+}

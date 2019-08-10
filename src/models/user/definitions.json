@@ -1,0 +1,149 @@
+{
+  "list": {
+    "definition": "GET /wp/v2/users",
+    "arguments": {
+      "context": "Scope under which the request is made; determines fields present in response. Default: view One of: view, embed, edit",
+      "page": "Current page of the collection. Default: 1",
+      "per_page": "Maximum number of items to be returned in result set. Default: 10",
+      "search": "Limit results to those matching a string.",
+      "exclude": "Ensure result set excludes specific IDs.",
+      "include": "Limit result set to specific IDs.",
+      "offset": "Offset the result set by a specific number of items.",
+      "order": "Order sort attribute ascending or descending. Default: asc One of: asc, desc",
+      "orderby": "Sort collection by object attribute. Default: name One of: id, include, name, registered_date, slug, include_slugs, email, url",
+      "slug": "Limit result set to users with one or more specific slugs.",
+      "roles": "Limit result set to users matching at least one specific role provided. Accepts csv list or single role.",
+      "who": "Limit result set to users who are considered authors. One of: authors"
+    }
+  },
+  "create": {
+    "definition": "POST /wp/v2/users",
+    "arguments": {
+      "username": "Login name for the user. Required: 1",
+      "name": "Display name for the user.",
+      "first_name": "First name for the user.",
+      "last_name": "Last name for the user.",
+      "email": "The email address for the user. Required: 1",
+      "url": "URL of the user.",
+      "description": "Description of the user.",
+      "locale": "Locale for the user. One of: , en_US",
+      "nickname": "The nickname for the user.",
+      "slug": "An alphanumeric identifier for the user.",
+      "roles": "Roles assigned to the user.",
+      "password": "Password for the user (never included). Required: 1",
+      "meta": "Meta fields."
+    }
+  },
+  "retrieve": {
+    "definition": ["GET /wp/v2/users/<id>", "GET /wp/v2/users/me"],
+    "arguments": {
+      "id": "Unique identifier for the user.",
+      "context": "Scope under which the request is made; determines fields present in response. Default: view One of: view, embed, edit"
+    }
+  },
+  "update": {
+    "definition": ["POST /wp/v2/users/<id>", "POST /wp/v2/users/me"],
+    "arguments": {
+      "id": "Unique identifier for the user.",
+      "username": "Login name for the user.",
+      "name": "Display name for the user.",
+      "first_name": "First name for the user.",
+      "last_name": "Last name for the user.",
+      "email": "The email address for the user.",
+      "url": "URL of the user.",
+      "description": "Description of the user.",
+      "locale": "Locale for the user. One of: , en_US",
+      "nickname": "The nickname for the user.",
+      "slug": "An alphanumeric identifier for the user.",
+      "roles": "Roles assigned to the user.",
+      "password": "Password for the user (never included).",
+      "meta": "Meta fields."
+    }
+  },
+  "delete": {
+    "definition": ["DELETE /wp/v2/users/<id>", "DELETE /wp/v2/users/me"],
+    "arguments": {
+      "id": "Unique identifier for the user.",
+      "force": "Required to be true, as users do not support trashing.",
+      "reassign": "Reassign the deleted user's posts and links to this user ID. Required: 1"
+    }
+  },
+  "schema": {
+    "id": {
+      "type": "integer",
+      "content": "Unique identifier for the user. Read only Context: embed, view, edit"
+    },
+    "username": {
+      "type": "string",
+      "content": "Login name for the user. Context: edit"
+    },
+    "name": {
+      "type": "string",
+      "content": "Display name for the user. Context: embed, view, edit"
+    },
+    "first_name": {
+      "type": "string",
+      "content": "First name for the user. Context: edit"
+    },
+    "last_name": {
+      "type": "string",
+      "content": "Last name for the user. Context: edit"
+    },
+    "email": {
+      "type": "string, email",
+      "content": "The email address for the user. Context: edit"
+    },
+    "url": {
+      "type": "string, uri",
+      "content": "URL of the user. Context: embed, view, edit"
+    },
+    "description": {
+      "type": "string",
+      "content": "Description of the user. Context: embed, view, edit"
+    },
+    "link": {
+      "type": "string, uri",
+      "content": "Author URL of the user. Read only Context: embed, view, edit"
+    },
+    "locale": {
+      "type": "string",
+      "content": "Locale for the user. Context: edit One of: , en_US"
+    },
+    "nickname": {
+      "type": "string",
+      "content": "The nickname for the user. Context: edit"
+    },
+    "slug": {
+      "type": "string",
+      "content": "An alphanumeric identifier for the user. Context: embed, view, edit"
+    },
+    "registered_date": {
+      "type": "string, datetime ([details](https://core.trac.wordpress.org/ticket/41032))",
+      "content": "Registration date for the user. Read only Context: edit"
+    },
+    "roles": {
+      "type": "array",
+      "content": "Roles assigned to the user. Context: edit"
+    },
+    "password": {
+      "type": "string",
+      "content": "Password for the user (never included). Context:"
+    },
+    "capabilities": {
+      "type": "object",
+      "content": "All capabilities assigned to the user. Read only Context: edit"
+    },
+    "extra_capabilities": {
+      "type": "object",
+      "content": "Any extra capabilities assigned to the user. Read only Context: edit"
+    },
+    "avatar_urls": {
+      "type": "object",
+      "content": "Avatar URLs for the user. Read only Context: embed, view, edit"
+    },
+    "meta": {
+      "type": "object",
+      "content": "Meta fields. Context: view, edit"
+    }
+  }
+}

@@ -1,0 +1,92 @@
+{
+  "list": {
+    "definition": "GET /wp/v2/categories",
+    "arguments": {
+      "context": "Scope under which the request is made; determines fields present in response. Default: view One of: view, embed, edit",
+      "page": "Current page of the collection. Default: 1",
+      "per_page": "Maximum number of items to be returned in result set. Default: 10",
+      "search": "Limit results to those matching a string.",
+      "exclude": "Ensure result set excludes specific IDs.",
+      "include": "Limit result set to specific IDs.",
+      "order": "Order sort attribute ascending or descending. Default: asc One of: asc, desc",
+      "orderby": "Sort collection by term attribute. Default: name One of: id, include, name, slug, include_slugs, term_group, description, count",
+      "hide_empty": "Whether to hide terms not assigned to any posts.",
+      "parent": "Limit result set to terms assigned to a specific parent.",
+      "post": "Limit result set to terms assigned to a specific post.",
+      "slug": "Limit result set to terms with one or more specific slugs."
+    }
+  },
+  "create": {
+    "definition": "POST /wp/v2/categories",
+    "arguments": {
+      "description": "HTML description of the term.",
+      "name": "HTML title for the term. Required: 1",
+      "slug": "An alphanumeric identifier for the term unique to its type.",
+      "parent": "The parent term ID.",
+      "meta": "Meta fields."
+    }
+  },
+  "retrieve": {
+    "definition": "GET /wp/v2/categories/<id>",
+    "arguments": {
+      "id": "Unique identifier for the term.",
+      "context": "Scope under which the request is made; determines fields present in response. Default: view One of: view, embed, edit"
+    }
+  },
+  "update": {
+    "definition": "POST /wp/v2/categories/<id>",
+    "arguments": {
+      "id": "Unique identifier for the term.",
+      "description": "HTML description of the term.",
+      "name": "HTML title for the term.",
+      "slug": "An alphanumeric identifier for the term unique to its type.",
+      "parent": "The parent term ID.",
+      "meta": "Meta fields."
+    }
+  },
+  "delete": {
+    "definition": "DELETE /wp/v2/categories/<id>",
+    "arguments": {
+      "id": "Unique identifier for the term.",
+      "force": "Required to be true, as terms do not support trashing."
+    }
+  },
+  "schema": {
+    "id": {
+      "type": "integer",
+      "content": "Unique identifier for the term. Read only Context: view, embed, edit"
+    },
+    "count": {
+      "type": "integer",
+      "content": "Number of published posts for the term. Read only Context: view, edit"
+    },
+    "description": {
+      "type": "string",
+      "content": "HTML description of the term. Context: view, edit"
+    },
+    "link": {
+      "type": "string, uri ",
+      "content": "URL of the term. Read only Context: view, embed, edit"
+    },
+    "name": {
+      "type": "string",
+      "content": "HTML title for the term. Context: view, embed, edit"
+    },
+    "slug": {
+      "type": "string",
+      "content": "An alphanumeric identifier for the term unique to its type. Context: view, embed, edit"
+    },
+    "taxonomy": {
+      "type": "string",
+      "content": "Type attribution for the term. Read only Context: view, embed, edit One of: category, post_tag, nav_menu, link_category, post_format"
+    },
+    "parent": {
+      "type": "integer",
+      "content": "The parent term ID. Context: view, edit"
+    },
+    "meta": {
+      "type": "object",
+      "content": "Meta fields. Context: view, edit"
+    }
+  }
+}
