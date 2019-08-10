@@ -1,0 +1,1 @@
+// TODO: verify fields in definitions.json
