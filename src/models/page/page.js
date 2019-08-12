@@ -1,5 +1,5 @@
 import Post from '../post/post';
-import getPost from '../post/post';
+import { getPost } from '../post/post';
 
 /**
  * @class Page

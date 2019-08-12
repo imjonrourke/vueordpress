@@ -1,10 +1,11 @@
 import axios from 'axios';
+import { generateRequestParameters } from '../../utils/requestParser';
 
 /**
  * @class Post
  * Class for Post. Constructor is directly replicated from WordPress documentation.
  */
-export class Post {
+export default class Post {
   constructor({
     /**
      * @property {number} - Post ID
@@ -296,11 +297,37 @@ export class Post {
   // }
 }
 
-export function getPost(args = {}) {
-  const { type = 'post' } = args.type;
-  return axios.get(`/wp/v2/${type}s/${args.id}`)
-    .then(response => {
-      return new Post(response.data);
-    })
+export function getPost(data = {}) {
+  const dataToQueries = generateRequestParameters(data, ['type', 'id']);
+  const { type = 'post', id } = data;
+  return axios.get(`/wp/v2/${type}s/${id}?${dataToQueries}`)
+    .then(response => new Post(response.data))
+    .catch(error => error.data);
+}
+
+export function getPosts(data = {}) {
+  const { type = 'post' } = data;
+  return axios.get(`/wp/v2/${type}s`)
+    .then(response => new Post(response.data))
+    .catch(error => error.data);
+}
+
+export function createPost(data = {}) {
+  const { type = 'post' } = data;
+  return axios(`/wp/v2/${type}s`, data)
+    .then(response => new Post(response.data))
+    .catch(error => error.data);
+}
+
+export function updatePost(data = {}) {
+  const { type = 'post', id } = data;
+  return axios(`/wp/v2/${type}s/${id}`)
+    .then(response => new Post(response.data))
+    .catch(error => error.data);
+}
+
+export function deletePost(id, type = 'post') {
+  return axios(`/wp/v2/${type}s/${id}`)
+    .then(() => true)
     .catch(error => error.data);
 }
