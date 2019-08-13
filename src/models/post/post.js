@@ -314,20 +314,20 @@ export function getPosts(data = {}) {
 
 export function createPost(data = {}) {
   const { type = 'post' } = data;
-  return axios(`/wp/v2/${type}s`, data)
+  return axios.post(`/wp/v2/${type}s`, data)
     .then(response => new Post(response.data))
     .catch(error => error.data);
 }
 
 export function updatePost(data = {}) {
   const { type = 'post', id } = data;
-  return axios(`/wp/v2/${type}s/${id}`)
+  return axios.post(`/wp/v2/${type}s/${id}`)
     .then(response => new Post(response.data))
     .catch(error => error.data);
 }
 
 export function deletePost(id, type = 'post') {
-  return axios(`/wp/v2/${type}s/${id}`)
+  return axios.delete(`/wp/v2/${type}s/${id}`)
     .then(() => true)
     .catch(error => error.data);
 }
