@@ -1,4 +1,4 @@
-import axios from 'axios';
+import { base } from '../../config/settings';
 import { generateRequestParameters } from '../../utils/requestParser';
 
 /**
@@ -300,34 +300,35 @@ export default class Post {
 export function getPost(data = {}) {
   const dataToQueries = generateRequestParameters(data, ['type', 'id']);
   const { type = 'post', id } = data;
-  return axios.get(`/wp/v2/${type}s/${id}?${dataToQueries}`)
+  return base.request.get(`/${type}s/${id}?${dataToQueries}`)
     .then(response => new Post(response.data))
     .catch(error => error.data);
 }
 
 export function getPosts(data = {}) {
+  const dataToQueries = generateRequestParameters(data, ['type']);
   const { type = 'post' } = data;
-  return axios.get(`/wp/v2/${type}s`)
+  return base.request.get(`/${type}s?${dataToQueries}`)
     .then(response => new Post(response.data))
     .catch(error => error.data);
 }
 
 export function createPost(data = {}) {
   const { type = 'post' } = data;
-  return axios.post(`/wp/v2/${type}s`, data)
+  return base.request.post(`/${type}s`, data)
     .then(response => new Post(response.data))
     .catch(error => error.data);
 }
 
 export function updatePost(data = {}) {
   const { type = 'post', id } = data;
-  return axios.post(`/wp/v2/${type}s/${id}`)
+  return base.request.post(`/${type}s/${id}`)
     .then(response => new Post(response.data))
     .catch(error => error.data);
 }
 
 export function deletePost(id, type = 'post') {
-  return axios.delete(`/wp/v2/${type}s/${id}`)
+  return base.request.delete(`/${type}s/${id}`)
     .then(() => true)
     .catch(error => error.data);
 }
