@@ -38,7 +38,7 @@ export class BaseConfiguration {
     this.password = password;
   }
   // eslint-disable-next-line
-  request(requestUrl) {
+  get request() {
     return this._request;
   }
   // NOTE: TO BE USED AT A LATER DATE
@@ -50,7 +50,7 @@ export class BaseConfiguration {
       return this.apiUrl + namespace;
     }
   }
-  /*
+  /**
    * Register headers for requests
    * @params {String} headerName - name of the header
    * @params {String} value - the value for that specific header
