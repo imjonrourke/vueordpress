@@ -7,7 +7,7 @@ export function getPost(config) {
   return (data = {}) => {
     const dataToQueries = generateRequestParameters(data, ['type', 'id']);
     const { type = 'post', id } = data;
-    return config.request.get(`/${type}s/${id}?${dataToQueries}`)
+    return config.request.get(`/${type}s/${id}${dataToQueries}`)
       .then(response => new Post(response.data))
       .catch(error => error.data);
   };
@@ -17,7 +17,7 @@ export function getPosts(config) {
   return (data = {}) => {
     const dataToQueries = generateRequestParameters(data, ['type']);
     const { type = 'post' } = data;
-    return config.request.get(`/${type}s?${dataToQueries}`)
+    return config.request.get(`/${type}s${dataToQueries}`)
       .then(response => new Post(response.data))
       .catch(error => error.data);
   };

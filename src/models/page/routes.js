@@ -7,7 +7,7 @@ export function getPage(config) {
   return (data = {}) => {
     const dataToQueries = generateRequestParameters(data, ['type', 'id']);
     const { type = 'page', id } = data;
-    return config.request.get(`/${type}s/${id}?${dataToQueries}`)
+    return config.request.get(`/${type}s/${id}${dataToQueries}`)
       .then(response => new Page(response.data))
       .catch(error => error.data);
   };
@@ -17,7 +17,7 @@ export function getPages(config) {
   return (data = {}) => {
     const dataToQueries = generateRequestParameters(data, ['type']);
     const { type = 'page' } = data;
-    return config.request.get(`/${type}s?${dataToQueries}`)
+    return config.request.get(`/${type}s${dataToQueries}`)
       .then(response => new Page(response.data))
       .catch(error => error.data);
   };
