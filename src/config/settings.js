@@ -27,6 +27,13 @@ export class BaseConfiguration {
     return `${this.siteUrl}${this.namespace}`;
   }
   load({
+     /**
+       * - Register headers for requests
+       * @property {String} siteUrl - URL for WP site instance
+       * @property {String} namespace - Directory for REST API
+       * @property {String} username - Username for WP REST request
+       * @property {String} password - Password for WP REST request
+      */
      siteUrl = 'http://localhost/wp-json',
      namespace = '/wp/v2',
      username = 'admin',
