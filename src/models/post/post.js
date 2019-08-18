@@ -2,7 +2,7 @@
  * @class Post
  * Class for Post. Constructor is directly replicated from WordPress documentation.
  */
-export default class Post {
+export class Post {
   constructor({
     /**
      * @property {number} - Post ID
@@ -127,5 +127,167 @@ export default class Post {
     this.mime_type = mime_type;
     this.comment_count = comment_count;
     this.filter = filter;
+  }
+}
+
+export class PostCreate {
+  constructor({
+    date =  new Date(0),
+    date_gmt =  new Date(0),
+    slug = '',
+    status = 'draft',
+    password = '',
+    title = '',
+    content = '',
+    author = 0,
+    excerpt = '',
+    featured_media = 0,
+    comment_status = 'open',
+    ping_status = 'open',
+    format = 'standard',
+    meta = {},
+    sticky = false,
+    template = '',
+    categories = [],
+    tags = []
+  }) {
+    this.date = date;
+    this.date_gmt = date_gmt;
+    this.slug = slug;
+    this.status = status;
+    this.password = password;
+    this.title = title;
+    this.content = content;
+    this.author = author;
+    this.excerpt = excerpt;
+    this.featured_media = featured_media;
+    this.comment_status = comment_status;
+    this.ping_status = ping_status;
+    this.format = format;
+    this.meta = meta;
+    this.sticky = sticky;
+    this.template = template;
+    this.categories = categories;
+    this.tags = tags;
+  }
+}
+
+export class PostUpdate {
+  constructor({
+    id = 0,
+    date =  new Date(0),
+    date_gmt =  new Date(0),
+    slug = '',
+    status = 'draft',
+    password = '',
+    title = '',
+    content = '',
+    author = 0,
+    excerpt = '',
+    featured_media = 0,
+    comment_status = 'open',
+    ping_status = 'open',
+    format = 'standard',
+    meta = {},
+    sticky = false,
+    template = '',
+    categories = [],
+    tags = []
+  }) {
+    this.id = id;
+    this.date = date;
+    this.date_gmt = date_gmt;
+    this.slug = slug;
+    this.status = status;
+    this.password = password;
+    this.title = title;
+    this.content = content;
+    this.author = author;
+    this.excerpt = excerpt;
+    this.featured_media = featured_media;
+    this.comment_status = comment_status;
+    this.ping_status = ping_status;
+    this.format = format;
+    this.meta = meta;
+    this.sticky = sticky;
+    this.template = template;
+    this.categories = categories;
+    this.tags = tags;
+  }
+}
+
+export class PostDelete {
+  constructor({
+    id = 0,
+    force = false
+  }) {
+    this.id = id;
+    this.force = force;
+  }
+}
+
+export default class PostResponse {
+  constructor({
+    id = 0,
+    date = new Date(0),
+    date_gmt = new Date(0),
+    guid = {},
+    modified = new Date(0),
+    modified_gmt = new Date(0),
+    slug = '',
+    status = '',
+    type = 'post',
+    link = '',
+    title = {},
+    content = {},
+    excerpt = {},
+    author = 0,
+    featured_media = 0,
+    comment_status = '',
+    ping_status = '',
+    sticky = false,
+    template = '',
+    format = '',
+    meta = {},
+    categories = [],
+    tags = []
+  }) {
+    const finalGuid = {
+      rendered: guid.rendered ? guid.rendered : ''
+    };
+    const finalTitle = {
+      rendered: title.rendered ? title.rendered : ''
+    };
+    const finalContent = {
+      rendered: content.rendered ? content.rendered : '',
+      protected: content.protected ? content.protected : false
+    };
+    const finalExcerpt = {
+      rendered: excerpt.rendered ? excerpt.rendered : '',
+      protected: excerpt.protected ? excerpt.protected : false
+    };
+    this.id = id;
+    this.date = date;
+    this.date_gmt = date_gmt;
+    this.guid = finalGuid;
+    this.modified = modified;
+    this.modified_gmt = modified_gmt;
+    this.slug = slug;
+    this.status = status;
+    this.type = type;
+    this.link = link;
+    this.title = finalTitle;
+    this.content = finalContent;
+    this.excerpt = finalExcerpt;
+    this.author = author;
+    this.featured_media = featured_media;
+    this.comment_status = comment_status;
+    this.ping_status = ping_status;
+    this.sticky = sticky;
+    this.template = template;
+    this.format = format;
+    this.meta = meta;
+    this.categories = categories;
+    this.tags = tags;
   }
 }
