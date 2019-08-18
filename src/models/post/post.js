@@ -172,26 +172,84 @@ export class PostCreate {
   }
 }
 
+/**
+ * @class PostUpdate
+ * Used to update Posts via REST API
+ */
 export class PostUpdate {
   constructor({
+    /**
+     * @property {number} - Post ID
+     */
     id = 0,
-    date =  new Date(0),
-    date_gmt =  new Date(0),
-    slug = '',
-    status = 'draft',
-    password = '',
-    title = '',
-    content = '',
+    /**
+     * @property {string} author - ID of post author. A numeric string, for compatibility reasons
+     */
     author = 0,
+    /**
+     * @property {string} date - The post's local publication time '0000-00-00 00:00:00'
+     */
+    date = new Date(0),
+    /**
+     * @property {string} date_gmt - The post's GMT publication time '0000-00-00 00:00:00'
+     */
+    date_gmt = new Date(0),
+    /**
+     * @property {string} slug - An alphanumeric identifier for the object unique to its type
+     */
+    slug = '',
+    /**
+     * @property {string} status - The post's status
+     */
+    status = 'publish',
+    /**
+     * @property {string} password - The post's password if protected
+     */
+    password = '',
+    /**
+     * @property {string} content - The post's content
+     */
+    content = '',
+    /**
+     * @property {string} title - The post's title
+     */
+    title = '',
+    /**
+     * @property {string} excerpt - The post's excerpt
+     */
     excerpt = '',
+    /**
+     * @property {int} featured_media - The ID of the featured media for the object
+     */
     featured_media = 0,
+    /**
+     * @property {string} comment_status - Whether or not comments are open on the object. One of: open, closed
+     */
     comment_status = 'open',
+    /**
+     * @property {string} ping_status - Whether or not the object can be pinged. One of: open, closed
+     */
     ping_status = 'open',
+    /**
+     * @property {string} format - The format for the object. One of: standard, aside, chat, gallery, link, image, quote, status, video, audio
+     */
     format = 'standard',
     meta = {},
+    /**
+     * @property {boolean} sticky - Whether or not the object should be treated as sticky
+     */
     sticky = false,
+    /**
+     * @property {string} template - The theme file to use to display the object
+     */
     template = '',
+    /**
+     * @property {array} categories - The terms assigned to the object in the category taxonomy
+     */
     categories = [],
+    /**
+     * @property {array} tags - The terms assigned to the object in the post_tag taxonomy
+     */
     tags = []
   }) {
     this.id = id;
