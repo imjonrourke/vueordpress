@@ -96,12 +96,12 @@ export class Post {
      * - Cached comment count
      * @property {string} comment_count - A numeric string, for compatibility reasons
      */
-    comment_count = 0,
+    comment_count = '0',
     /**
      * - Does not correspond to a DB field
      * @property {string} filter - Stores the post object's sanitization level
      */
-    filter
+    filter,
   }) {
     this.id = id;
     this.author = author;
@@ -135,21 +135,21 @@ export class PostCreate {
     date =  new Date(0),
     date_gmt =  new Date(0),
     slug = '',
-    status = 'draft',
+    status = '',
     password = '',
     title = '',
     content = '',
     author = 0,
     excerpt = '',
     featured_media = 0,
-    comment_status = 'open',
-    ping_status = 'open',
-    format = 'standard',
+    comment_status = '',
+    ping_status = '',
+    format = '',
     meta = {},
     sticky = false,
     template = '',
     categories = [],
-    tags = []
+    tags = [],
   }) {
     this.date = date;
     this.date_gmt = date_gmt;
@@ -250,7 +250,7 @@ export class PostUpdate {
     /**
      * @property {array} tags - The terms assigned to the object in the post_tag taxonomy
      */
-    tags = []
+    tags = [],
   }) {
     this.id = id;
     this.date = date;
@@ -274,10 +274,45 @@ export class PostUpdate {
   }
 }
 
+/**
+ * @class PostRetrieve
+ * Model for arguments to pass when retrieving post
+ */
+export class PostRetrieve {
+  constructor({
+    /**
+     * @property {number} id - Post ID
+     */
+    id = 0,
+    /**
+     * @property {string} context - Scope under which the request is made; determines fields present in response. Default: view One of: view, embed, edit
+     */
+    context = '',
+    /**
+     * @property {string} password - The password for the post if it is password protected
+     */
+    password = '',
+  }) {
+    this.id = id;
+    this.context = context;
+    this.password = password;
+  }
+}
+
+/**
+ * @class PostDelete
+ * Model for arguments to pass when deleting post
+ */
 export class PostDelete {
   constructor({
+    /**
+     * @property {number} id - Post ID
+     */
     id = 0,
-    force = false
+    /**
+     * @property {boolean} force - Whether to bypass trash and force deletion
+     */
+    force = false,
   }) {
     this.id = id;
     this.force = force;
@@ -308,7 +343,7 @@ export default class PostResponse {
     format = '',
     meta = {},
     categories = [],
-    tags = []
+    tags = [],
   }) {
     const finalGuid = {
       rendered: guid.rendered ? guid.rendered : ''
