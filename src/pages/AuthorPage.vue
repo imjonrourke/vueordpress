@@ -15,7 +15,7 @@
 export default {
   name: 'AuthorPage',
   components: {
-    UserSummary: () => import('../components/UserSummary.vue'),
+    UserSummary: () => import('../components/user/UserSummary.vue'),
   },
   props: {
     pageData: {

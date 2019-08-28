@@ -1,6 +1,9 @@
 <template>
   <main>
-    <template v-slot:default></template>
+    <template v-slot:default>
+      <div>content</div>
+      <div>content</div>
+    </template>
   </main>
 </template>
 <script>
