@@ -1,6 +1,6 @@
 <template>
-  <nav class="sn-navigation--main">
-    <ul>
+  <section class="sn-navigation__dropdown--main">
+    <ul v-if="navigationItems.length">
       <li
         v-for="(item, index) in parentItems"
         :key="index"
@@ -8,18 +8,18 @@
         <a :href="item.link">
           {{ item.label }}
         </a>
-        <navigation-main-dropdown
+        <navigation-dropdown
           v-if="item.children.length"
         />
       </li>
     </ul>
-  </nav>
+  </section>
 </template>
 <script>
   export default {
-    name: 'NavigationMain',
+    name: 'NavigationDropdown',
     components: {
-      NavigationMainDropdown: () => import('./NavigationDropdown.vue'),
+      NavigationDropdown: () => import('./NavigationDropdown.vue'),
     },
     props: {
       navigationItems: {

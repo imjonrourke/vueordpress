@@ -1,14 +1,17 @@
 <template>
   <div>
     <header class="sn-header">
+      <template v-slot:subHeaderTop></template>
       <template v-slot:logo>
         <a
           class="sn-header__logo"
           :href="logoLink"
         ></a>
       </template>
-      <template v-slot:sideNavigation></template>
-      <template v-slot:mainNavigation></template>
+      <template v-slot:navigationSide></template>
+      <template v-slot:navigationBottom>
+        <navigation-main />
+      </template>
     </header>
   </div>
 </template>
@@ -16,7 +19,9 @@
 <script>
   export default {
     name: 'HeaderMain',
-    components: {},
+    components: {
+      NavigationMain: () => import('../navigation/NavigationMain.vue')
+    },
     props: {
       /**
        * @property {string | object} logoLink
@@ -33,11 +38,7 @@
     data() {
       return {};
     },
-    computed: {
-
-    },
-    created() {
-
-    },
+    computed: {},
+    created() {},
   };
 </script>

@@ -1,13 +1,14 @@
 <template>
   <div>
     <footer class="sn-footer">
-
+      <template v-slot:subFooterTop></template>
+      <template v-slot:subFooterBottom></template>
     </footer>
   </div>
 </template>
 <script>
   export default {
-    name: 'HeaderMain',
+    name: 'FooterMain',
     components: {},
     props: {
       /**
