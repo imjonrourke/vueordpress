@@ -1,3 +1,4 @@
+// eslint-disable-next-line
 import { Post, PostUpdate, PostDelete, PostRetrieve } from '../post/post';
 
 /**

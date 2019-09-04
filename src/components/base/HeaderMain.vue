@@ -9,8 +9,10 @@
         ></a>
       </template>
       <template v-slot:navigationSide></template>
-      <template v-slot:navigationBottom>
-        <navigation-main />
+      <template v-slot:navigationBottom="navigation">
+        <navigation-main
+          :navigation-items="navigation.navigation"
+        />
       </template>
     </header>
   </div>
@@ -32,7 +34,17 @@
         type: [String, Object],
         default() {
           return '/';
-        }
+        },
+      },
+      /**
+       * @property {object} navigation
+       * - Object containing full header navigation
+       */
+      navigation: {
+        type: Object,
+        default() {
+          return {};
+        },
       },
     },
     data() {

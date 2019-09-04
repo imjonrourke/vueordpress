@@ -8,9 +8,14 @@
         <a :href="item.link">
           {{ item.label }}
         </a>
-        <navigation-main-dropdown
+        <template
           v-if="item.children.length"
-        />
+          v-slot:dropdown="item"
+        >
+          <navigation-main-dropdown
+            :navigation-items="item.children"
+          />
+        </template>
       </li>
     </ul>
   </nav>
