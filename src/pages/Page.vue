@@ -4,9 +4,11 @@
     :head="head"
   >
     <main class="pg-page">
-      <template v-slot:hero="{ heroImage: featuredMedia, heroDescription: featuredDescription }">
+      <template
+        v-if="featuredMedia.length"
+        v-slot:hero="{ heroImage: featuredMedia, heroDescription: featuredDescription }"
+      >
         <hero-main
-          v-if="featuredMedia.length"
           :hero-image="heroImage"
           :hero-description="heroDescription"
         />
@@ -25,6 +27,14 @@
     name: 'PagePage',
     components: {
       HeroMain: () => import('../components/hero/HeroMain.vue'),
+    },
+    props: {
+      id: {
+        type: Number,
+        default() {
+          return 0;
+        },
+      },
     },
     data() {
       return {
@@ -48,8 +58,29 @@
         };
       },
     },
+    created() {
+      if (this.id) {
+        this.loadView(this.id);
+      }
+    },
     methods: {
-      loadView() {},
+      loadView(id) {
+        return new Promise((resolve, reject) => {
+          if (id) {
+            return resolve;
+          }
+          return reject;
+        })
+          .then((pageData) => {
+            const {
+              title,
+              content
+            } = pageData;
+            this.title = title;
+            this.content = content;
+          })
+          .catch(() => {});
+      },
     },
   };
 </script>
