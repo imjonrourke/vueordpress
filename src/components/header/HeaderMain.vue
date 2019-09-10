@@ -1,21 +1,20 @@
 <template>
-  <div>
-    <header class="sn-header">
-      <template v-slot:subHeaderTop></template>
-      <template v-slot:logo>
-        <a
-          class="sn-header__logo"
-          :href="logoLink"
-        ></a>
-      </template>
-      <template v-slot:navigationSide></template>
-      <template v-slot:navigationBottom="navigation">
-        <navigation-main
-          :navigation-items="navigation.navigation"
-        />
-      </template>
-    </header>
-  </div>
+  <header class="sn-header">
+    <template v-slot:headerTop></template>
+    <template v-slot:logo>
+      <a
+        class="sn-header__logo"
+        :href="logoLink"
+      ></a>
+    </template>
+    <template v-slot:navSide="navigation"></template>
+    <template v-slot:navBottom="navigation">
+      <navigation-main
+        :navigation-items="navigation.navigation"
+      />
+    </template>
+    <template v-slot:headerBottom></template>
+  </header>
 </template>
 
 <script>
