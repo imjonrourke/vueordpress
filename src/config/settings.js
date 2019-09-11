@@ -34,8 +34,8 @@ export class BaseConfiguration {
        * @property {String} username - Username for WP REST request
        * @property {String} password - Password for WP REST request
       */
-     siteUrl = 'http://localhost/wp-json',
-     namespace = '/wp/v2',
+     siteUrl = 'http://one.wordpress.test',
+     namespace = '/wp-json/wp/v2',
      username = 'admin',
      password = 'admin'
   }) {
