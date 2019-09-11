@@ -23,6 +23,7 @@
   </component>
 </template>
 <script>
+  import Page from '../models/page/page';
   export default {
     name: 'PagePage',
     components: {
@@ -38,15 +39,16 @@
     },
     data() {
       return {
-        headData: {
-          links: [],
-          meta: [],
-        },
-        featuredMedia: '',
-        featuredDescription: '',
-        title: '',
-        content: '',
-        author: {},
+        ...new Page(),
+        // headData: {
+        //   links: [],
+        //   meta: [],
+        // },
+        // featuredMedia: '',
+        // featuredDescription: '',
+        // title: '',
+        // content: '',
+        // author: {},
       };
     },
     computed: {
