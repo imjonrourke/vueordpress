@@ -7,14 +7,14 @@ const Namespace = (path, headers = []) => ({
 
 export class BaseConfiguration {
   constructor({
-    site,
-    base,
+    siteUrl,
+    baseUrl,
     username,
     password,
     connectionKey = '',
     connectionToken = ''
   }) {
-    this.load({ site, base, username, password });
+    this.load({ siteUrl, baseUrl, username, password });
     this.connectionKey = connectionKey;
     this.connectionToken = connectionToken;
     this.modules = {};
@@ -24,23 +24,23 @@ export class BaseConfiguration {
     });
   }
   get apiUrl() {
-    return `${this.site}${this.base}`;
+    return `${this.siteUrl}${this.baseUrl}`;
   }
   load({
      /**
        * - Register headers for requests
-       * @property {String} site - URL for WP site instance
-       * @property {String} base - Directory for REST API
+       * @property {String} siteUrl - URL for WP site instance
+       * @property {String} baseUrl - Directory for REST API
        * @property {String} username - Username for WP REST request
        * @property {String} password - Password for WP REST request
       */
-     site = 'http://one.wordpress.test',
-     base = '/wp-json/wp/v2',
+     siteUrl = 'http://one.wordpress.test',
+     baseUrl = '/wp-json/wp/v2',
      username = 'admin',
      password = 'admin'
   }) {
-    this.site = site;
-    this.base = base;
+    this.siteUrl = siteUrl;
+    this.baseUrl = baseUrl;
     this.username = username;
     this.password = password;
   }
