@@ -5,7 +5,7 @@ const Namespace = (path, headers = []) => ({
     headers
   });
 
-export class BaseConfiguration {
+class BaseConfiguration {
   constructor({
     siteUrl,
     baseUrl,
@@ -44,7 +44,6 @@ export class BaseConfiguration {
     this.username = username;
     this.password = password;
   }
-  // eslint-disable-next-line
   get request() {
     return this._request;
   }
@@ -74,6 +73,22 @@ export class BaseConfiguration {
       });
     }
   }
+  /**
+   * Set Site URL externally
+   * @param {String} siteUrl - Site URL to use for application
+   */
+  setSiteUrl(siteUrl) {
+    this.siteUrl = siteUrl;
+  }
+  /**
+   * Set Base URL used for API's root externally
+   * @param {String} baseUrl - Base URL to use for application
+   */
+  setBaseUrl(baseUrl) {
+    this.baseUrl = baseUrl;
+  }
 }
 
-export let base = new BaseConfiguration();
+export default function(config) {
+  return new BaseConfiguration(config);
+}
