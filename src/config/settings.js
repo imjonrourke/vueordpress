@@ -6,14 +6,7 @@ const Namespace = (path, headers = []) => ({
   });
 
 class BaseConfiguration {
-  constructor({
-    siteUrl,
-    baseUrl,
-    username,
-    password,
-    connectionKey = '',
-    connectionToken = ''
-  }) {
+  constructor(siteUrl, baseUrl, username, password, connectionKey = '', connectionToken = '') {
     this.load({ siteUrl, baseUrl, username, password });
     this.connectionKey = connectionKey;
     this.connectionToken = connectionToken;
@@ -90,5 +83,6 @@ class BaseConfiguration {
 }
 
 export default function(config) {
-  return new BaseConfiguration(config);
+  const { siteUrl, baseUrl, username, password, connectionKey = '', connectionToken = '' } = config;
+  return new BaseConfiguration(siteUrl, baseUrl, username, password, connectionKey, connectionToken);
 }
