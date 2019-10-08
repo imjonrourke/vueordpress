@@ -1,4 +1,4 @@
-import { BaseConfiguration } from './settings';
+import BaseConfiguration from './settings';
 
 /**
  * @function RoutesConfigurator
@@ -8,7 +8,7 @@ import { BaseConfiguration } from './settings';
  * @returns {Object} - Object with key of function name and value of returned function
  */
 export const RoutesConfigurator = (
-  config = new BaseConfiguration(),
+  config = BaseConfiguration(),
   methodsList = []
 ) => {
   const returnObject = {};
