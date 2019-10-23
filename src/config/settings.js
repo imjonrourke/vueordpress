@@ -1,20 +1,24 @@
-import axios from 'axios';
-
 const Namespace = (path, headers = []) => ({
     path,
     headers
   });
+const Header = (name, value) => ({
+  name,
+  value,
+});
+
+const UseAxios = ({ load = false, attempts = 3 }) => ({
+  load,
+  attempts,
+});
 
 class BaseConfiguration {
-  constructor(siteUrl, baseUrl, username, password, connectionKey = '', connectionToken = '') {
-    this.load({ siteUrl, baseUrl, username, password });
+  constructor(siteUrl, baseUrl, username, password, useAxios, connectionKey = '', connectionToken = '') {
+    this.load({ siteUrl, baseUrl, username, password, useAxios });
     this.connectionKey = connectionKey;
     this.connectionToken = connectionToken;
     this.modules = {};
     this.headers = {};
-    this._request = axios.create({
-      baseURL: this.apiUrl
-    });
   }
   get apiUrl() {
     return `${this.siteUrl}${this.baseUrl}`;
@@ -26,19 +30,63 @@ class BaseConfiguration {
        * @property {String} baseUrl - Directory for REST API
        * @property {String} username - Username for WP REST request
        * @property {String} password - Password for WP REST request
+       * @property {Boolean|Object} useAxios - Lazy-load import axios
       */
      siteUrl = 'http://one.wordpress.test',
      baseUrl = '/wp-json/wp/v2',
      username = 'admin',
-     password = 'admin'
+     password = 'admin',
+     useAxios = false,
   }) {
     this.siteUrl = siteUrl;
     this.baseUrl = baseUrl;
     this.username = username;
     this.password = password;
+    this._request = null;
+    if (typeof useAxios === 'boolean') {
+      this.useAxios = UseAxios({ load: useAxios })
+    } else if (typeof useAxios !== 'boolean' && useAxios.load) {
+      this.useAxios = UseAxios(useAxios);
+    } else {
+      this.useAxios = UseAxios({ load: false });
+    }
+    if (this.useAxios.load) {
+      this.importAxios(this.useAxios.attempts);
+    }
   }
   get request() {
     return this._request;
+  }
+
+  /**
+   * Asynchronously load Axios based on implementation
+   * Dynamically import axios on demand to keep initial bundle smaller
+   */
+  importAxios(attemptCount = 3) {
+    // Create recursive function for errored import reattempts
+    // Errored import can be due to network failure after this bundle is loaded
+    const dynamicallyImportAxios = (decrementor = 0) => {
+      return import('axios')
+        .then((axios) => {
+          this._request = axios.create({
+            baseUrl: this.apiUrl,
+          });
+          return {
+            status: 200,
+            message: 'SUCCESS',
+          };
+        })
+        .catch(() => {
+          if (decrementor > 0) {
+            return dynamicallyImportAxios(decrementor - 1);
+          }
+          return {
+            status: 404,
+            message: 'NOT FOUND',
+          };
+        });
+    };
+    return dynamicallyImportAxios(attemptCount);
   }
   // NOTE: TO BE USED AT A LATER DATE
   // Idea would be to allow namespace -> header associations
